@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <sys/types.h>
 #include <string.h>
+#include <unistd.h>
+#include <sys/wait.h>
 
 int main(int argc, char* argv[])
 {
@@ -14,10 +16,10 @@ int main(int argc, char* argv[])
         printf ("Error \n");
     else if (pid != 0)
     {
-        wait();
+        wait(NULL);
         printf("parent %d\n", getpid());
-        snprintf (buffer_parent, 30, "%d", getpid());
-        snprintf (buffer_child, 30, "%d", pid);
+        sprintf (buffer_parent, "%d", getpid());
+        sprintf (buffer_child, "%d", pid);
         strcat(parent_filename, buffer_parent);
         FILE * parent_file = fopen(parent_filename,"wb");
         strcat (buffer_parent, " - parent\n");
@@ -29,12 +31,12 @@ int main(int argc, char* argv[])
     else
     {
         printf ("child %d\n", getpid());
-        snprintf (buffer_child, 30, "%d", getpid());
+        sprintf (buffer_child, "%d", getpid());
         strcat(child_filename, buffer_child);
-        snprintf (buffer_child, 30, "%d", getppid());
+        sprintf (buffer_child, "%d", getppid());
         FILE * child_file = fopen(child_filename,"wb");
         fwrite(buffer_child, strlen(buffer_child), 1, child_file);
         fclose(child_file);
     }
-        return 0;
+    return 0;
 }
