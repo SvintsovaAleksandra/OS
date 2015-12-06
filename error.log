@@ -1,22 +1,4 @@
-pid.c:12:12: warning: implicit declaration of function 'fork' is invalid in C99 [-Wimplicit-function-declaration]
-        int pid = fork(); // копируем родительский процесс
-                  ^
-pid.c:18:30: warning: implicit declaration of function 'getpid' is invalid in C99 [-Wimplicit-function-declaration]
-                snprintf(c_data, 15, "%d", getpid()); //записываем pid дочернего процесса в строку
-                                           ^
-/usr/include/secure/_stdio.h:57:62: note: expanded from macro 'snprintf'
-  __builtin___snprintf_chk (str, len, 0, __darwin_obsz(str), __VA_ARGS__)
-                                                             ^
-pid.c:20:30: warning: implicit declaration of function 'getppid' is invalid in C99 [-Wimplicit-function-declaration]
-                snprintf(c_data, 15, "%d", getppid()); //записываем ppid процесса
-                                           ^
-/usr/include/secure/_stdio.h:57:62: note: expanded from macro 'snprintf'
-  __builtin___snprintf_chk (str, len, 0, __darwin_obsz(str), __VA_ARGS__)
-                                                             ^
-pid.c:29:8: error: too few arguments to function call, expected 1, have 0
-                wait();
-                ~~~~ ^
-/usr/include/sys/wait.h:248:1: note: 'wait' declared here
-pid_t   wait(int *) __DARWIN_ALIAS_C(wait);
-^
-3 warnings and 1 error generated.
+thread_game.c
+- не выдается сообщения об ошибке при открытие несуществующего файла или файла, к которому нет прав доступа
+- при заполнении всего экрана символы начинают перезатираться в правом нижнем углу
+- если нет make-файла в где-то должно быть написано как это все собирается. Собирал по памяти, а должен был через make файл
